@@ -17,7 +17,7 @@ public class MutualInformation {
 		double dataHy = dataHyCalculate(dimProb, marginalProb);
 		double dataHy_Hyh = dataHy_HyhCalculate(dimProb, matrixApriProb, joinProb);
 		double resultado = Math.round((dataHy - dataHy_Hyh) * 100.0) / 100.0;
-		dataCalculate.append("\r\n\r\nInformacion Mutua Resultante = " + resultado);
+		dataCalculate.append("\r\n\r\nInformacion Mutua Resultante = H(y) - H(y|h) = " + resultado);
 		return dataCalculate.toString();
 	}
 
@@ -56,7 +56,7 @@ public class MutualInformation {
 		Scanner dim = new Scanner(System.in);
 
 		System.out.println("Digite los datos del vector de probabilidad aposteriori");
-		dataCalculate.append("Datos del vector de probabilidad aporteriori\r\n");
+		dataCalculate.append("Datos del vector de probabilidad aposteriori\r\n");
 
 		String vector = "{";
 		for (int i = 0; i < dimProb; i++) {
@@ -86,7 +86,7 @@ public class MutualInformation {
 				joinProb[i][j] = Math.round((matrixApriProb[i][j] * vectorApostProb[i]) * 100.0) / 100.0;
 				dataCalculate.append("P(X = X" + i + ",Y = Y" + j + ") = P(Y = Y" + j + "|X = X" + i + "P(X = X" + i
 						+ " = " + Math.round((matrixApriProb[i][j]) * 100.0) / 100.0 + " * "
-						+ Math.round((vectorApostProb[i]) * 100.0) / 100.0 + " = " + joinProb[i][j] + "\r\n");
+						+ Math.round((vectorApostProb[i]) * 100.0) / 100.0 + " = " + joinProb[i][j] + " bits\r\n");
 				sum += joinProb[i][j];
 			}
 		}
@@ -106,9 +106,9 @@ public class MutualInformation {
 			for (int j = 0; j < dimProb; j++) {
 				sumProbJoin += joinProb[j][i];
 				sum += joinProb[j][i];
-				dataCalculate.append("P(X = X" + j + ", Y = Y" + i + ") = " + joinProb[j][i] + "\r\n");
+				dataCalculate.append("P(X = X" + j + ", Y = Y" + i + ") = " + joinProb[j][i] + " bits\r\n");
 			}
-			dataCalculate.append("P(Y = Y" + i + ") = " + sumProbJoin + "\r\n\r\n");
+			dataCalculate.append("P(Y = Y" + i + ") = " + sumProbJoin + " bits\r\n\r\n");
 
 			marginalProb[i] = sumProbJoin;
 		}
@@ -122,7 +122,7 @@ public class MutualInformation {
 		dataCalculate.append("Calculo de H(y)\r\n");
 		for (int i = 0; i < dimProb; i++) {
 			dataCalculate.append(marginalProb[i] + " * Log2(1/" + marginalProb[i] + ") = "
-					+ marginalProb[i] * (Math.log(1 / marginalProb[i]) / Math.log(2)) + "\r\n");
+					+ marginalProb[i] * (Math.log(1 / marginalProb[i]) / Math.log(2)) + " bits\r\n");
 			sumHy += marginalProb[i] * (Math.log(1 / marginalProb[i]) / Math.log(2));
 		}
 
@@ -138,7 +138,7 @@ public class MutualInformation {
 		for (int i = 0; i < dimProb; i++) {
 			for (int j = 0; j < dimProb; j++) {
 				dataCalculate.append(joinProb[i][j] + " * Log2(1/" + matrixApriProb[i][j] + ") = "
-						+ joinProb[i][j] * (Math.log(1 / matrixApriProb[i][j]) / Math.log(2)) + "\r\n");
+						+ joinProb[i][j] * (Math.log(1 / matrixApriProb[i][j]) / Math.log(2)) + " bits\r\n");
 				sumHy_Hyh += joinProb[i][j] * (Math.log(1 / matrixApriProb[i][j]) / Math.log(2));
 			}
 		}

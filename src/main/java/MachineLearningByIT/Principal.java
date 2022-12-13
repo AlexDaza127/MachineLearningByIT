@@ -12,22 +12,24 @@ public class Principal {
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
 		LocalDateTime date_of_today = LocalDateTime.now();
 		String formattedDate = date_of_today.format(format);
-		String messageOne = "Digite la dimension de la matriz de probabilidades P(h) (2 a 10)";
+		String messageOne = "Digite la dimension de los datos de probabilidad (2 a 10)";
 		System.out.println(messageOne);
-		Scanner dim = new Scanner(System.in);
-		int dimProb = dim.nextInt();
+		try {
+			Scanner dim = new Scanner(System.in);
+			int dimProb = dim.nextInt();
 
-		if (dimProb <= 10 && dimProb >= 0) {
-			FileCreate fileCreate = new FileCreate();
-			fileCreate.createDirs();
-			MutualInformation mutualInformation = new MutualInformation();
-			fileCreate.createFiles(mutualInformation.ecuation2_6(dimProb), formattedDate);
-			System.out.println("Fin del procesamiento");
-		} else {
-			System.out.println("la cantidad no pertenece al rango aceptable para calcular");
-		}
-
-		dim.close();
+			if (dimProb <= 10 && dimProb >= 0) {
+				FileCreate fileCreate = new FileCreate();
+				fileCreate.createDirs();
+				MutualInformation mutualInformation = new MutualInformation();
+				fileCreate.createFiles(mutualInformation.ecuation2_6(dimProb), formattedDate);
+				System.out.println("Fin del procesamiento");
+				dim.close();
+			} else {
+				System.out.println("La cantidad no pertenece al rango aceptable para calcular");
+			}
+		} catch (Exception e) {
+			System.out.println("No se digito caracter numérico");		}
 
 	}
 }

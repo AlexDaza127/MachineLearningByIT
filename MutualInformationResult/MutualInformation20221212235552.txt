@@ -1,0 +1,42 @@
+			Calculo de la Informacion Mutua
+
+Datos de la matriz de probabilidad apriori = 
+| 0.8 0.2 |
+| 0.7 0.3 |
+
+Datos del vector de probabilidad aposteriori
+{0.6, 0.4}
+
+Probabilidad Conjunta
+P(X = X0,Y = Y0) = P(Y = Y0|X = X0P(X = X0 = 0.8 * 0.6 = 0.48 bits
+P(X = X0,Y = Y1) = P(Y = Y1|X = X0P(X = X0 = 0.2 * 0.6 = 0.12 bits
+P(X = X1,Y = Y0) = P(Y = Y0|X = X1P(X = X1 = 0.7 * 0.4 = 0.28 bits
+P(X = X1,Y = Y1) = P(Y = Y1|X = X1P(X = X1 = 0.3 * 0.4 = 0.12 bits
+Sumatoria de probabilidad conjunta = 1.0
+
+Probabilidad Marginal
+P(Y = Y0)
+P(X = X0, Y = Y0) = 0.48 bits
+P(X = X1, Y = Y0) = 0.28 bits
+P(Y = Y0) = 0.76 bits
+
+P(Y = Y1)
+P(X = X0, Y = Y1) = 0.12 bits
+P(X = X1, Y = Y1) = 0.12 bits
+P(Y = Y1) = 0.24 bits
+
+Sumatoria de probabilidad marginal = 1.0
+
+Calculo de H(y)
+0.76 * Log2(1/0.76) = 0.3009057940116659 bits
+0.24 * Log2(1/0.24) = 0.4941344853728565 bits
+Sumatoria de Hy = 0.8
+
+Calculo de H(y|h)
+0.48 * Log2(1/0.8) = 0.15452548554593393 bits
+0.12 * Log2(1/0.2) = 0.2786313713864835 bits
+0.28 * Log2(1/0.7) = 0.1440804883923323 bits
+0.12 * Log2(1/0.3) = 0.20843587129994476 bits
+Sumatoria de H(y|h) = 0.79
+
+Informacion Mutua Resultante = H(y) - H(y|h) = 0.01
